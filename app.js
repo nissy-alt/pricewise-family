@@ -56,6 +56,7 @@ function handleEdit(event) {
   if (!key) return;
   product[key]=event.target.value;
   persist(storageKey,state);
+  setStatus('');
   renderResult();
 }
 function resultSummary(result) {
@@ -115,7 +116,7 @@ function renderHistory() {
     item.append(meta,restore,remove);root.append(item);
   });
 }
-function renderAll(){ $('#category').value=state.category;$('#unitHint').textContent=state.category==='count'?'เปรียบเทียบราคาต่อ 1 ชิ้น':state.category==='mass'?'เปรียบเทียบราคาต่อ 100 กรัม':'เปรียบเทียบราคาต่อ 100 มล.';renderCards();renderResult();renderHistory();persist(storageKey,state); }
+function renderAll(){ setStatus('');$('#category').value=state.category;$('#unitHint').textContent=state.category==='count'?'เปรียบเทียบราคาต่อ 1 ชิ้น':state.category==='mass'?'เปรียบเทียบราคาต่อ 100 กรัม':'เปรียบเทียบราคาต่อ 100 มล.';renderCards();renderResult();renderHistory();persist(storageKey,state); }
 function setStatus(message){ $('#status').textContent=message; }
 $('#category').addEventListener('change',e=>{state.category=e.target.value;state.products=state.products.map(p=>({...p,unit:unitOptions[state.category][0]}));renderAll();});
 $('#addButton').addEventListener('click',()=>{if(state.products.length>=5)return;state.products.push(currentProduct());renderAll();productsElement.lastElementChild?.querySelector('.name-input')?.focus();});
