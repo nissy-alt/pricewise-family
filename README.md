@@ -8,9 +8,15 @@
 
 ## ใช้งานและเผยแพร่
 
-เป็นเว็บไซต์แบบ static ไม่มี dependency, API, ฐานข้อมูล หรือขั้นตอน build เปิด `index.html` ผ่านเว็บเซิร์ฟเวอร์ในเครื่อง หรือเผยแพร่โฟลเดอร์นี้ด้วย Cloudflare Pages โดยตั้ง output directory เป็น `.` และไม่ต้องใส่ build command
+หน้าเว็บเป็น static ไม่มี dependency หรือขั้นตอน build เปิด `index.html` ผ่านเว็บเซิร์ฟเวอร์ในเครื่อง หรือเผยแพร่โฟลเดอร์นี้ด้วย Cloudflare Pages โดยตั้ง output directory เป็น `.` และไม่ต้องใส่ build command
 
 ข้อมูลประวัติและแบบร่างอยู่ในเบราว์เซอร์ของแต่ละเครื่อง ไม่ซิงก์ข้ามเครื่อง การแชร์ LINE ส่งเฉพาะข้อความสรุปที่ผู้ใช้กดแชร์
+
+## LINE Official Account (ทางเลือก)
+
+มีริชเมนูสำหรับเปิดเว็บ และบอตตอบข้อความแบบไม่เก็บประวัติแชตใน `functions/api/line.js` เส้นทาง webhook คือ `https://pricewise-family.pages.dev/api/line` บอตยังไม่ทำงานจนกว่าจะสร้าง LINE OA, เปิด Messaging API และตั้งค่า `LINE_CHANNEL_SECRET` กับ `LINE_CHANNEL_ACCESS_TOKEN` เป็น **Secrets** ใน Cloudflare Pages พร้อมเปิด webhook ใน LINE Developers Console ห้ามใส่ค่าจริงใน repository
+
+ตัวอย่างส่งในแชต: `400 ml ฿159` ขึ้นบรรทัดใหม่ `500 ml ฿184` หรือพิมพ์ `วิธีใช้` และ `เว็บ` บอตรองรับสินค้า 2–5 รายการ หน่วยปริมาตร น้ำหนัก ชิ้น และส่วนลดเปอร์เซ็นต์ ตัวเลขทุกตัวคำนวณผ่าน `pricing.js` เดียวกับหน้าเว็บ ไม่มีฐานข้อมูลหรือ AI API
 
 ## ตัวอย่างตรวจสอบ
 
