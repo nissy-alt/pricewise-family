@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff8e9">
+  <meta name="description" content="PriceWise เทียบราคาต่อหน่วยให้คุ้มกว่าเดิม ใช้ฟรี บันทึกในเครื่อง และแชร์ผ่าน LINE">
+  <meta name="color-scheme" content="light">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+  <title>PriceWise — เทียบให้ชัวร์ คุ้มทุกชิ้น</title>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="PriceWise หน้าแรก"><span class="brand-icon">✳</span><span>price<span class="brand-accent">wise</span><small>เพื่อนช่วยเลือกของคุ้ม</small></span></a>
+      <div class="top-actions"><button id="installButton" class="icon-button install-button" type="button" hidden>＋ ติดตั้ง</button><a class="history-link" href="#history">ประวัติ <span aria-hidden="true">↗</span></a></div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-content">
+          <div class="eyebrow"><span class="sparkle">✦</span> ช้อปฉลาดแบบคนในบ้าน <span class="sparkle">✦</span></div>
+          <h1 id="heroTitle">อันไหน<span class="highlight">คุ้มกว่า?</span><br>ให้เราช่วยคิด!</h1>
+          <p>เทียบราคาต่อปริมาณจริง เห็นส่วนลดชัด ๆ แล้วเลือกตัวที่คุ้มที่สุดในไม่กี่วินาที</p>
+          <div class="hero-badges"><span>✓ ใช้ฟรี</span><span>✓ ไม่ต้องสมัคร</span><span>✓ ข้อมูลอยู่ในเครื่อง</span></div>
+        </div>
+        <div class="hero-art" aria-hidden="true"><span class="doodle star-one">✳</span><span class="doodle star-two">✦</span><div class="art-bottle bottle-one"><div class="bottle-cap"></div><div class="bottle-label">฿159<small>400 ml</small></div></div><div class="art-bottle bottle-two"><div class="bottle-cap"></div><div class="bottle-label">฿184<small>500 ml</small></div></div><div class="art-arrow">↘</div><div class="art-sticker">คุ้มกว่า<br><strong>7.42%</strong></div></div>
+      </section>
+
+      <section class="workspace" aria-labelledby="compareTitle">
+        <div class="section-heading"><div><span class="section-kicker">01 / มาเริ่มกันเลย</span><h2 id="compareTitle">เทียบของในตะกร้า <span aria-hidden="true">🛒</span></h2><p>ใส่สินค้า 2–5 ตัว ระบบจะคิดราคาเทียบในหน่วยเดียวกันให้</p></div><button id="sampleButton" class="text-button" type="button">ลองตัวอย่าง ↗</button></div>
+        <div class="unit-panel"><label for="category">ประเภทที่เทียบ</label><select id="category"><option value="volume">ของเหลว · มล. / ลิตร</option><option value="mass">น้ำหนัก · กรัม / กก.</option><option value="count">จำนวน · ชิ้น</option></select><p id="unitHint">เปรียบเทียบราคาต่อ 100 มล.</p></div>
+        <div id="products" class="product-grid" aria-live="polite"></div>
+        <div class="product-footer"><button id="addButton" class="add-button" type="button"><span aria-hidden="true">＋</span> เพิ่มสินค้าอีกชิ้น</button><span id="productCount">2 จาก 5 ชิ้น</span></div>
+      </section>
+
+      <section class="result-section" aria-labelledby="resultTitle"><div class="section-heading compact"><div><span class="section-kicker">02 / ผลเทียบราคา</span><h2 id="resultTitle">เห็นแล้วเลือกง่าย <span aria-hidden="true">✨</span></h2></div></div><div id="result" aria-live="polite"></div><div class="result-actions"><button id="saveButton" class="primary-button" type="button">♡ บันทึกผลนี้</button><button id="shareButton" class="secondary-button" type="button">↗ แชร์ทาง LINE</button></div><p id="status" role="status" class="status-message"></p></section>
+
+      <section id="history" class="history-section" aria-labelledby="historyTitle"><div class="section-heading compact"><div><span class="section-kicker">03 / เก็บไว้ดูอีกที</span><h2 id="historyTitle">ประวัติของบ้านเรา <span aria-hidden="true">📒</span></h2><p>บันทึกไว้ในเบราว์เซอร์เครื่องนี้เท่านั้น</p></div></div><div id="historyList"></div></section>
+    </main>
+
+    <footer><div class="footer-brand">price<span>wise</span> ✳</div><p>ของคุ้ม ไม่ต้องเดาอีกแล้ว</p><small>ทำงานบนเครื่องของคุณ · ไม่มีบัญชี · ไม่มีฐานข้อมูล · LINE Bot รอเชื่อมในอนาคต</small></footer>
+  </div>
+  <template id="productTemplate"><article class="product-card"><div class="card-top"><span class="product-badge"></span><button class="remove-button" type="button" aria-label="ลบสินค้า">×</button></div><label class="field"><span>ชื่อสินค้า</span><input class="name-input" type="text" maxlength="60" placeholder="เช่น นมขวดใหญ่" autocomplete="off"></label><div class="field-row"><label class="field"><span>ราคารวม (บาท)</span><div class="input-wrap"><span>฿</span><input class="price-input" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00"></div></label><label class="field"><span>ปริมาณต่อแพ็ก</span><input class="quantity-input" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0"></label></div><div class="field-row"><label class="field"><span>หน่วย</span><select class="unit-input"></select></label><label class="field"><span>จำนวนแพ็ก</span><input class="pack-input" type="number" min="1" step="1" inputmode="numeric" value="1"></label></div><details class="discount-details"><summary>มีส่วนลดไหม? <span>＋</span></summary><div class="field-row"><label class="field"><span>ลดราคา (%)</span><input class="percent-input" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="0"></label><label class="field"><span>คูปองลด (บาท)</span><input class="coupon-input" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0"></label></div><p>คิดส่วนลด % จากราคารวมก่อน แล้วหักคูปอง</p></details><div class="card-bottom"><span>ราคาสุทธิ</span><strong class="net-price">—</strong></div></article></template>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
